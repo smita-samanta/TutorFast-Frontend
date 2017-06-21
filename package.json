@@ -10,7 +10,9 @@
     "build": "webpack"
   },
   "dependencies": {
+    "babel-eslint": "^7.2.3",
     "eslint": "^4.0.0",
+    "eslint-plugin-react": "^7.1.0",
     "webpack": "^3.0.0"
   }
 }

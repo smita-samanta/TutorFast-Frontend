@@ -2,47 +2,22 @@
   "env": {
     "browser": true,
     "node": true,
-    "es6": true,
-    "jest": true
+    "es6": true
+    // "jest": true
   },
 
   "parser": "babel-eslint",
 
   "plugins": [
-    "flowtype",
+    // "flowtype",
     "react"
   ],
 
 
   "settings": {
-    "flowtype": {
-      "onlyFilesWithFlowAnnotation": true
-    }
-  },
-
-  "ecmaFeatures": {
-    "arrowFunctions": true,
-    "binaryLiterals": true,
-    "blockBindings": true,
-    "classes": true,
-    "defaultParams": true,
-    "destructuring": true,
-    "forOf": true,
-    "generators": true,
-    "modules": true,
-    "objectLiteralComputedProperties": true,
-    "objectLiteralDuplicateProperties": true,
-    "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true,
-    "octalLiterals": true,
-    "regexUFlag": true,
-    "regexYFlag": true,
-    "spread": true,
-    "superInFunctions": true,
-    "templateStrings": true,
-    "unicodeCodePointEscapes": true,
-    "globalReturn": true,
-    "jsx": true
+    // "flowtype": {
+    //   "onlyFilesWithFlowAnnotation": true
+    // }
   },
 
   "rules": {
@@ -84,62 +59,62 @@
 
     //
     // Flow rules
-    //
-    "flowtype/boolean-style": [
-      2,
-      "boolean"
-    ],
-    "flowtype/define-flow-type": 1,
-    "flowtype/delimiter-dangle": [
-      2,
-      "never"
-    ],
-    "flowtype/generic-spacing": [
-      2,
-      "never"
-    ],
-    "flowtype/no-primitive-constructor-types": 2,
-    // "flowtype/no-weak-types": 2,
-    "flowtype/object-type-delimiter": [
-      2,
-      "comma"
-    ],
-    "flowtype/require-parameter-type": 2,
-    "flowtype/require-return-type": [
-      2,
-      "always",
-      {
-        "annotateUndefined": "never"
-      }
-    ],
-    "flowtype/require-valid-file-annotation": 2,
-    "flowtype/semi": [
-      2,
-      "always"
-    ],
-    "flowtype/space-after-type-colon": [
-      2,
-      "always",
-      { "allowLineBreak": true }
-    ],
-    "flowtype/space-before-generic-bracket": [
-      2,
-      "never"
-    ],
-    "flowtype/space-before-type-colon": [
-      2,
-      "never"
-    ],
-    "flowtype/type-id-match": [
-      2,
-      "^([A-Z][a-z0-9]*)+Type$"
-    ],
-    "flowtype/union-intersection-spacing": [
-      2,
-      "always"
-    ],
-    "flowtype/use-flow-type": 1,
-    "flowtype/valid-syntax": 1,
+    // //
+    // "flowtype/boolean-style": [
+    //   2,
+    //   "boolean"
+    // ],
+    // "flowtype/define-flow-type": 1,
+    // "flowtype/delimiter-dangle": [
+    //   2,
+    //   "never"
+    // ],
+    // "flowtype/generic-spacing": [
+    //   2,
+    //   "never"
+    // ],
+    // "flowtype/no-primitive-constructor-types": 2,
+    // // "flowtype/no-weak-types": 2,
+    // "flowtype/object-type-delimiter": [
+    //   2,
+    //   "comma"
+    // ],
+    // "flowtype/require-parameter-type": 2,
+    // "flowtype/require-return-type": [
+    //   2,
+    //   "always",
+    //   {
+    //     "annotateUndefined": "never"
+    //   }
+    // ],
+    // "flowtype/require-valid-file-annotation": 2,
+    // "flowtype/semi": [
+    //   2,
+    //   "always"
+    // ],
+    // "flowtype/space-after-type-colon": [
+    //   2,
+    //   "always",
+    //   { "allowLineBreak": true }
+    // ],
+    // "flowtype/space-before-generic-bracket": [
+    //   2,
+    //   "never"
+    // ],
+    // "flowtype/space-before-type-colon": [
+    //   2,
+    //   "never"
+    // ],
+    // "flowtype/type-id-match": [
+    //   2,
+    //   "^([A-Z][a-z0-9]*)+Type$"
+    // ],
+    // "flowtype/union-intersection-spacing": [
+    //   2,
+    //   "always"
+    // ],
+    // "flowtype/use-flow-type": 1,
+    // "flowtype/valid-syntax": 1,
 
 
 
@@ -375,10 +350,9 @@
     "react/prefer-stateless-function": 0, // Enforce stateless React Components to be written as a pure function
     "react/prop-types": 2, // Prevent missing props validation in a React component definition
     "react/react-in-jsx-scope": 2, // Prevent missing React when using JSX
-    "react/require-extension": [1, {"extensions": [".js"]}], // Restrict file extensions that may be required
     "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
     "react/sort-comp": 2, // Enforce component methods order
-    "react/wrap-multilines": 2, // Prevent missing parentheses around multilines JSX (fixable)
+    "react/jsx-wrap-multilines": 2, // Prevent missing parentheses around multilines JSX (fixable)
     //
     // JSX-specific rules
     //
