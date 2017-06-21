@@ -1,9 +1,16 @@
 {
-  "name": "TutorFast-Frontend",
+  "name": "tutorfast-frontend",
   "version": "0.0.0",
   "description": "TutorFast frontend SPA.",
   "main": "index.js",
   "repository": "git@github.com:TutorFast/TutorFast-Frontend.git",
   "author": "Alex Aralis <alex.aralis@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "eslint": "^4.0.0",
+    "webpack": "^3.0.0"
+  }
 }
