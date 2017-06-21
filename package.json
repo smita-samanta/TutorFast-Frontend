@@ -1,0 +1,9 @@
+{
+  "name": "TutorFast-Frontend",
+  "version": "0.0.0",
+  "description": "TutorFast frontend SPA.",
+  "main": "index.js",
+  "repository": "git@github.com:TutorFast/TutorFast-Frontend.git",
+  "author": "Alex Aralis <alex.aralis@gmail.com>",
+  "license": "MIT"
+}
