@@ -1,0 +1,14 @@
+{
+  "presets": [["env", {"modules": false}], "stage-0", "react"],
+  "plugins": [
+    // [
+    //   "flow-react-proptypes",
+    //   "typecheck", { "disable": { "production": true } }
+    // ],
+    ["transform-runtime", {
+      "polyfill": false
+      }],
+    "react-hot-loader/babel"
+    // "transform-decorators-legacy"
+  ]
+}
