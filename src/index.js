@@ -14,16 +14,5 @@ const render = Component =>
 
 render(App);
 
-// if (module.hot) {
-//   module.hot.accept('./containers/App', () => {
-//     render(App);
-//     console.log('lksdfdl');
-//   });
-// }
-
-if (module.hot) {
-  module.hot.accept('./containers/App', () => {
-    const NextApp = require('./containers/App');
-    render(NextApp);
-  });
-}
+if (module.hot)
+  module.hot.accept('./containers/App', () => render(App));

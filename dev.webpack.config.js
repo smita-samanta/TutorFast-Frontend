@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const cjson = require('cjson');
 
 module.exports = {
   entry: [
@@ -52,13 +53,7 @@ module.exports = {
         test: /.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        query: {
-          presets: ['env', 'stage-0', 'react'],
-          plugins: [
-            'transform-runtime',
-            'add-module-exports',
-          ],
-        },
+        query: cjson.load('./.babelrc'),
       },
     ],
   },
