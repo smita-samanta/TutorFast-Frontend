@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-
-const App = <h1> Hello World! </h1>;
+import App from './containers/App';
 
 const render = Component =>
   ReactDOM.render(
@@ -15,5 +14,9 @@ const render = Component =>
 
 render(App);
 
-if (module.hot)
-  module.hot.accept('./containers/App', () => render(App));
+if (module.hot) {
+  module.hot.accept('./containers/App', () => {
+    render(App);
+    console.log('lksdfdl');
+  });
+}

@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: [
@@ -7,8 +8,13 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'public'),
-    publicPath: '/',
     filename: 'bundle.js',
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'static'),
+    port: 9000,
+    hot: true,
+    publicPath: '/',
   },
   devtool: 'eval-source-map',
   resolve: {
@@ -16,14 +22,17 @@ module.exports = {
       '~': path.resolve('./src'),
     },
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: 'eslint-loader',
+      // },
       {
         test: /\.css$/,
         loaders: ['style-loader', 'css-loader'],
