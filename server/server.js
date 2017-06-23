@@ -9,6 +9,11 @@ app.get('/', (req, res) => {
     res.send('Homepage!')
 })
 
+app.get('/app', (req, res) => {
+    
+    res.sendfile('./server/static/index.html');
+})
+
 app.get('*', (req, res) => {
     let application = renderToString(<App />)
 
@@ -28,7 +33,7 @@ app.get('*', (req, res) => {
         </body>
     </html>`
     
-    res.send(html)
+    res.sendfile('./server/static/404.html')
 })
 
 
