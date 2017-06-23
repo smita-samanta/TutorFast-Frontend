@@ -22,10 +22,16 @@
     "cjson": "^0.5.0",
     "eslint": "^4.0.0",
     "eslint-loader": "^1.8.0",
+    "eslint-plugin-flowtype": "^2.34.0",
     "eslint-plugin-react": "^7.1.0",
+    "history": "^4.6.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "next",
+    "redux": "^3.7.0",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0"
   }
