@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack -p --config dev.webpack.config.js",
-    "server": "webpack-dev-server --config dev.webpack.config.js"
+    "server": "webpack-dev-server --config dev.webpack.config.js",
+    "postinstall": "webpack -p --config dev.webpack.config.js",
+    "start": "node server.js"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
