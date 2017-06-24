@@ -1,3 +1,8 @@
-import React from 'react';
+import { connect } from 'react-redux';
+import HelloWorld from '../components/HelloWorld';
+import test from '../actions/test';
 
-export default () => <h1> Hello World! </h1>;
+export default connect(
+  ({ test }) => ({ list: test }),
+  dispatch => ({ onClick: () => dispatch(test('something')) }),
+)(HelloWorld);

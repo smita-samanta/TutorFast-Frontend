@@ -1,1 +1,1 @@
-export default (state = {}, _) => state;
+export { default as test } from './test';
