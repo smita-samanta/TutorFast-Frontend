@@ -9,7 +9,7 @@
   "scripts": {
     "build": "webpack -p --config dev.webpack.config.js",
     "server": "webpack-dev-server --config dev.webpack.config.js",
-    "postinstall": "webpack -p --config dev.webpack.config.js",
+    "prestart": "webpack -p --config dev.webpack.config.js",
     "start": "node server.js"
   },
   "dependencies": {
@@ -30,11 +30,13 @@
     "history": "^4.6.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-grid-system": "^2.9.2",
     "react-hot-loader": "next",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "next",
     "redux": "^3.7.0",
+    "semantic-ui-react": "^0.70.0",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0"
   }
