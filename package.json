@@ -41,7 +41,6 @@
     "react-router-redux": "next",
     "redux": "^3.7.0",
     "sass-loader": "^6.0.6",
-    "semantic-ui-css": "^2.2.10",
     "semantic-ui-react": "^0.70.0",
     "style-loader": "^0.18.2",
     "webpack": "^3.0.0",
