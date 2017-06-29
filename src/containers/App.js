@@ -1,8 +1,10 @@
-import { connect } from 'react-redux';
+import React from 'react';
 import HelloWorld from '../components/HelloWorld';
-import test from '../actions/test';
+import { Switch, Route } from 'react-router';
 
-export default connect(
-  ({ test }) => ({ list: test }),
-  dispatch => ({ onClick: () => dispatch(test('something')) }),
-)(HelloWorld);
+export default () =>
+  <Switch>
+    <Route exact path='/' component={HelloWorld}/>
+    <Route path='/sign-up' component={() => <h1> sign-up </h1>} />
+  </Switch>
+;

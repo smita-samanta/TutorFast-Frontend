@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import test from '../actions/test';
 
-export default (
+const HelloWorld = (
   { onClick, list = ['default'] } :
   { onClick: Function, list: Array<String> }
 ) =>
@@ -9,4 +11,10 @@ export default (
     <ul> {list.map(
       (itm, idx) => <li key={idx}> { itm } </li>
     )} </ul>
-  </div>;
+  </div>
+;
+
+export default connect(
+  ({ test }) => ({ list: test }),
+  dispatch => ({ onClick: () => dispatch(test('something')) }),
+)(HelloWorld);
