@@ -5,9 +5,8 @@
     "react"
   ],
   "plugins": [
-    ["transform-runtime", {
-      "polyfill": false
-      }],
+    ["transform-runtime", {"polyfill": false}],
+    ["lodash", { "id": ["lodash", "semantic-ui-react"] }],
     "react-hot-loader/babel"
   ]
 }
