@@ -5,17 +5,8 @@ import { Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { API_BASE } from '~/config';
 import { screenResponse as screen, pipe } from '~/util';
-
-const signUp =
-  user =>
-    fetch(`${API_BASE}/user`,
-      {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(user),
-      },
-    )
-;
+import { push } from 'react-router-redux';
+import signIn from '~/actions/signIn';
 
 class SignUp extends Component {
   state = {
@@ -23,15 +14,31 @@ class SignUp extends Component {
     errors: [],
   }
 
+  props: {
+    onSignUp: Function,
+  }
+
   handleSubmit = user => {
     this.setState({ loading: true });
 
-    return signUp(user)
+    return this.signUp(user)
       .then(pipe(() => this.setState({ loading: false, errors: [] })))
       .then(screen)
+      .then(res => res.json())
+      .then(({ user, token }) => this.props.onSignUp(token, user))
       .catch(err => this.setState({ loading: false, errors: [err] }))
     ;
   }
+
+  signUp = user =>
+    fetch(
+      `${API_BASE}/user`,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(user),
+      },
+    )
 
   render() {
     return (
@@ -54,5 +61,10 @@ class SignUp extends Component {
 
 export default connect(
   () => ({}),
-  () => ({}),
+  dispatch => ({
+    onSignUp: (token, user) => {
+      dispatch(push('/'));
+      dispatch(signIn(user, token));
+    },
+  }),
 )(SignUp);
