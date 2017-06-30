@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Form, Message } from 'semantic-ui-react';
+import { Form, Message, Button } from 'semantic-ui-react';
 import { validate } from 'email-validator';
 
 class SignUpForm extends Component {
   static defaultProps = {
     onSubmit: () => {},
     success: '',
+    loading: false,
     errors: [],
     fieldErrors: {
       email: false,
@@ -32,13 +33,17 @@ class SignUpForm extends Component {
   }
 
   componentWillReceiveProps({ success, errors }) {
-    this.setState({ success, errors: [...errors] });
+    this.setState({
+      success,
+      errors: [...errors],
+    });
   }
 
   props: {
     onSubmit: Function,
     success: string,
     errors: Array<string>,
+    loading: boolean,
     fieldErrors: {
       email: boolean,
       username: boolean,
@@ -53,23 +58,26 @@ class SignUpForm extends Component {
     const errors = Object.entries(this.computeFieldValidity())
       .filter(([_, validity]) => !validity)
       .map(([field]) => field)
-      .map(field => `The ${field} field is not valid.  Fix problems to submit agian.`);
+      .map(field => `The ${field} field is not valid.`)
+    ;
 
-    if (errors.length) {
-      console.log(errors);
+    this.setState({
+      errors: [...errors],
+      username: { ...this.state.username, pristine: false },
+      password: { ...this.state.password, pristine: false },
+      email: { ...this.state.email, pristine: false },
+    });
 
-      this.setState({
-        errors,
-        username: { ...this.state.username, pristine: false },
-        password: { ...this.state.password, pristine: false },
-        email: { ...this.state.email, pristine: false },
-      });
 
-      return;
-    }
+    // if there are errors dont submit
+    if (errors.length) return;
 
     const { username, password, email } = this.state;
-    this.props.onSubmit({ username, password, email });
+    this.props.onSubmit({
+      username: username.value,
+      password: password.value,
+      email: email.value,
+    });
   }
 
   computeFieldValidity = () => ({
@@ -101,20 +109,8 @@ class SignUpForm extends Component {
       <Form
         onSubmit={this.handleSubmit}
         success={Boolean(success)}
-        error={Boolean(errors.length)} >
-
-        <Message
-          success
-          header='Success'
-          content={success} />
-
-        {errors.map((error, idx) =>
-          <Message
-            key={idx}
-            error
-            header='Error'
-            content={error} />
-        )}
+        error={Boolean(errors.length)}
+        loading={this.props.loading} >
 
         <Form.Input
           name='email'
@@ -137,7 +133,19 @@ class SignUpForm extends Component {
           error={fieldErrors.password}
           onChange={this.handleChange} />
 
-        <Form.Button content='Sign Up!' />
+        <Button type='submit' floated='right'>Sign Up!</Button>
+
+        <Message
+          success
+          content={success} />
+
+        {errors.map((error, idx) =>
+          <Message
+            key={idx}
+            error
+            content={error || 'Error'} />
+        )}
+
       </Form>
     );
   }
