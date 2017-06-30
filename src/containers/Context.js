@@ -9,7 +9,7 @@ import createHistory from 'history/createHashHistory';
 // defaults to empty HashHistory and using this projects reducers.
 export const createContextConfig = (
   { history = createHistory(), reducers = _reducers } :
-  { history: Object, reducers: Object } = {}
+  { history: {}, reducers: {} } = {}
 ) => (
   {
     store: createStore(

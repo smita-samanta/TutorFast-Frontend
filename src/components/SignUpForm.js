@@ -6,74 +6,137 @@ class SignUpForm extends Component {
   static defaultProps = {
     onSubmit: () => {},
     success: '',
-    error: {
-      message: '',
+    errors: [],
+    fieldErrors: {
       email: false,
-      password: false,
       username: false,
+      password: false,
     },
   }
 
   state = {
-    email: '',
-    username: '',
-    password: '',
+    email: {
+      pristine: true,
+      value: '',
+    },
+    username: {
+      pristine: true,
+      value: '',
+    },
+    password: {
+      pristine: true,
+      value: '',
+    },
+    success: this.props.success,
+    errors: [...this.props.errors],
+  }
+
+  componentWillReceiveProps({ success, errors }) {
+    this.setState({ success, errors: [...errors] });
   }
 
   props: {
     onSubmit: Function,
     success: string,
-    error: {
-      message: string | boolean,
+    errors: Array<string>,
+    fieldErrors: {
       email: boolean,
-      password: boolean,
       username: boolean,
-    },
+      password: boolean,
+    }
   }
 
   handleChange = (e, { name, value }) =>
-    this.setState({ [name]: value })
+    this.setState({ [name]: { value, pristine: false } })
+
+  handleSubmit = () => {
+    const errors = Object.entries(this.computeFieldValidity())
+      .filter(([_, validity]) => !validity)
+      .map(([field]) => field)
+      .map(field => `The ${field} field is not valid.  Fix problems to submit agian.`);
+
+    if (errors.length) {
+      console.log(errors);
+
+      this.setState({
+        errors,
+        username: { ...this.state.username, pristine: false },
+        password: { ...this.state.password, pristine: false },
+        email: { ...this.state.email, pristine: false },
+      });
+
+      return;
+    }
+
+    const { username, password, email } = this.state;
+    this.props.onSubmit({ username, password, email });
+  }
+
+  computeFieldValidity = () => ({
+    username: this.state.username.value,
+    email: validate(this.state.email.value),
+    password: this.state.password.value,
+  })
+
+  computeFieldErrors = () => ({
+    username:
+      !this.state.username.pristine &&
+      !this.computeFieldValidity().username ||
+      this.props.fieldErrors.username,
+    email:
+      !this.state.email.pristine &&
+      !this.computeFieldValidity().email ||
+      this.props.fieldErrors.email,
+    password:
+      !this.state.password.pristine &&
+      !this.computeFieldValidity().password ||
+      this.props.fieldErrors.password,
+  })
 
   render() {
-    const { email } = this.state;
-    const { error, success } = this.props;
+    const { errors, success } = this.state;
+    const fieldErrors = this.computeFieldErrors();
 
     return (
       <Form
-        onSubmit={this.props.onSubmit}
+        onSubmit={this.handleSubmit}
         success={Boolean(success)}
-        error={Boolean(error.message)} >
+        error={Boolean(errors.length)} >
 
         <Message
           success
           header='Success'
           content={success} />
 
-        <Message
-          error
-          header='Error'
-          content={error.message} />
+        {errors.map((error, idx) =>
+          <Message
+            key={idx}
+            error
+            header='Error'
+            content={error} />
+        )}
 
         <Form.Input
           name='email'
           label='Email'
           placeholder='your@email.com'
-          error={email && !validate(email) || error.email}
+          error={fieldErrors.email}
           onChange={this.handleChange} />
 
         <Form.Input
           name='username'
           label='Username'
           placeholder='Super Tutor'
-          error={error.username}
+          error={fieldErrors.username}
           onChange={this.handleChange} />
 
         <Form.Input
           name='password'
           label='Password'
           type='password'
-          error={error.password}
+          error={fieldErrors.password}
           onChange={this.handleChange} />
+
         <Form.Button content='Sign Up!' />
       </Form>
     );

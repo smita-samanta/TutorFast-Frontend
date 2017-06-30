@@ -9,7 +9,8 @@ const SignUp =
       <Col
         md={6} lg={4}
         offset={{ md: 3, lg: 4 }}>
-        <SignUpForm success={'sldkf'} />
+        <SignUpForm
+          onSubmit={console.log} />
       </Col>
     </Row>
   </Container>
