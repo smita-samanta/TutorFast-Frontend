@@ -28,7 +28,7 @@ export const createContextConfig = (
 // context in one convenient place.
 export default (
   { children, store, history } :
-  { children: Element | [Element], store: Object, history: Object }
+  { children: {}, store: {}, history: {} }
 ) =>
   <Provider store={store} >
     <ConnectedRouter history={history}>

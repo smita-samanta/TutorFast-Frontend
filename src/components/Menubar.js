@@ -6,7 +6,7 @@ import { push } from 'react-router-redux';
 const Menubar =
 (
   { path, onItemClick } :
-  { path: String, onItemClick: Function }
+  { path: string, onItemClick: Function }
 ) =>
   <Menu pointing secondary>
     <Menu.Item content='Home' name='/' active={path === '/'} onClick={onItemClick} />

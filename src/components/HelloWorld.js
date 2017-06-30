@@ -4,7 +4,7 @@ import test from '../actions/test';
 
 const HelloWorld = (
   { onClick, list = ['default'] } :
-  { onClick: Function, list: Array<String> }
+  { onClick: Function, list: Array<string> }
 ) =>
   <div>
     <h1 onClick={onClick}> Hello World! </h1>

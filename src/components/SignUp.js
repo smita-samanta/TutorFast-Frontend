@@ -4,12 +4,12 @@ import { Container, Row, Col } from 'react-grid-system';
 
 const SignUp =
 () =>
-  <Container>
+  <Container fluid>
     <Row>
       <Col
-        md={8} lg={6} xl={4}
-        offset={{ md: 2, lg: 3, xl: 4 }}>
-        <SignUpForm />
+        md={6} lg={4}
+        offset={{ md: 3, lg: 4 }}>
+        <SignUpForm success={'sldkf'} />
       </Col>
     </Row>
   </Container>

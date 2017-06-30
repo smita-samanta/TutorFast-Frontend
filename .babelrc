@@ -1,12 +1,13 @@
 {
   "presets": [
     ["env", {"modules": false}], 
-    "stage-0", 
+    "stage-0",
     "react"
   ],
   "plugins": [
     ["transform-runtime", {"polyfill": false}],
     ["lodash", { "id": ["lodash", "semantic-ui-react"] }],
+    ["flow-react-proptypes"],
     "react-hot-loader/babel"
   ]
 }

@@ -70,7 +70,7 @@
     "flowtype/define-flow-type": 1,
     "flowtype/delimiter-dangle": [
       2,
-      "never"
+      "always"
     ],
     "flowtype/generic-spacing": [
       2,
@@ -155,7 +155,7 @@
     "no-implicit-coercion": 2, // disallow the type conversions with shorter notations
     "no-implicit-globals": 2, // disallow var and named functions in global scope
     "no-implied-eval": 2, // disallow use of eval()-like methods
-    "no-invalid-this": 2, // disallow this keywords outside of classes or class-like objects
+    // "no-invalid-this": 2, // disallow this keywords outside of classes or class-like objects
     "no-iterator": 2, // disallow usage of __iterator__ property
     "no-labels": 2, // disallow use of labeled statements
     "no-lone-blocks": 2, // disallow unnecessary nested blocks
@@ -363,7 +363,7 @@
     "react/jsx-closing-bracket-location": [2, {"selfClosing": "after-props", "nonEmpty": "after-props"}], // Validate closing bracket location in JSX
     "react/jsx-curly-spacing": [2, "never"], // Enforce or disallow spaces inside of curly braces in JSX attributes (fixable)
     "react/jsx-equals-spacing": 2, // Enforce or disallow spaces around equal signs in JSX attributes
-    "react/jsx-handler-names": [2, {"eventHandlerPrefix": "on", "eventHandlerPropPrefix": "on"}], // Enforce event handler naming conventions in JSX
+    "react/jsx-handler-names": [2, {"eventHandlerPrefix": "handle", "eventHandlerPropPrefix": "on"}], // Enforce event handler naming conventions in JSX
     "react/jsx-indent-props": [2, 2], // Validate props indentation in JSX
     "react/jsx-indent": [2, 2], // Validate JSX indentation
     "react/jsx-key": 2, // Validate JSX has key prop when in array or iterator
