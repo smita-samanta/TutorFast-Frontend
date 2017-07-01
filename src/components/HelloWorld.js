@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import test from '../actions/test';
+import { test } from '../actions';
 
 const HelloWorld = (
   { onClick, list = ['default'] } :

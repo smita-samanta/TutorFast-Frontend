@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { signOut } from '~/actions';
 
 const Menubar =
 (
@@ -67,7 +68,7 @@ export default connect(
   ({ router, user }) => ({ path: router.location.pathname, user }),
   dispatch => ({
     onItemClick: (_, { name }) => dispatch(push(name)),
-    onSignOut: () => {},
+    onSignOut: () => dispatch(signOut()),
     onProfile: () => {},
   }),
 )(Menubar);

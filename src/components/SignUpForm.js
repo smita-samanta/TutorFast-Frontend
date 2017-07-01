@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Message, Button } from 'semantic-ui-react';
+import { Form, Message } from 'semantic-ui-react';
 import { validate } from 'email-validator';
 
 class SignUpForm extends Component {
@@ -133,7 +133,7 @@ class SignUpForm extends Component {
           error={fieldErrors.password}
           onChange={this.handleChange} />
 
-        <Button type='submit' floated='right'>Sign Up!</Button>
+        <Form.Button content='Sign Up!' />
 
         <Message
           success

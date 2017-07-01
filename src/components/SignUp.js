@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { API_BASE } from '~/config';
 import { screenResponse as screen, pipe } from '~/util';
 import { push } from 'react-router-redux';
-import signIn from '~/actions/signIn';
+import { signIn } from '~/actions';
 
 class SignUp extends Component {
   state = {
@@ -47,7 +47,7 @@ class SignUp extends Component {
           <Col
             md={6} lg={4}
             offset={{ md: 3, lg: 4 }}>
-            <Segment clearing>
+            <Segment>
               <SignUpForm
                 onSubmit={this.handleSubmit}
                 {...this.state} />
