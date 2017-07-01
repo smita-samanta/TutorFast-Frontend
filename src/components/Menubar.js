@@ -45,6 +45,16 @@ const Menubar =
       }
 
       {
+        !user.token
+          ? <Menu.Item
+            content='Sign In'
+            name='/sign-in'
+            active={path === '/sign-in'}
+            onClick={onItemClick} />
+          : null
+      }
+
+      {
         user.token
           ? <Menu.Item
             name={`/user/${user.email}`}
