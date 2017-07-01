@@ -4,9 +4,11 @@ import App from './containers/App';
 import { AppContainer } from 'react-hot-loader';
 import Context, { createContextConfig } from './containers/Context';
 
-// import 'semantic-ui-css/semantic.min.css';
-
-const contextConfig = createContextConfig();
+const contextConfig = createContextConfig({
+  initialState: {
+    user: JSON.parse(localStorage.getItem('user')) || {},
+  },
+});
 
 const render = Component =>
   ReactDOM.render(

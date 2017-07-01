@@ -8,8 +8,8 @@ import createHistory from 'history/createHashHistory';
 // Creates an object that is spreak into the Context component.
 // defaults to empty HashHistory and using this projects reducers.
 export const createContextConfig = (
-  { history = createHistory(), reducers = _reducers } :
-  { history: {}, reducers: {} } = {}
+  { history = createHistory(), reducers = _reducers, initialState = {} } :
+  { history: {}, reducers: {}, initialState: {} } = {}
 ) => (
   {
     store: createStore(
@@ -17,6 +17,7 @@ export const createContextConfig = (
         ...reducers,
         router: routerReducer,
       }),
+      initialState,
       applyMiddleware(routerMiddleware(history)),
     ),
     history,
