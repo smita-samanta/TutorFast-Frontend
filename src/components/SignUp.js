@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import SignUpForm from './SignUpForm';
-import { Container, Row, Col } from 'react-grid-system';
 import { Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { pipe } from '~/util';
 import { push } from 'react-router-redux';
+
+import { pipe } from '~/util';
 import { signIn } from '~/actions';
 import { createUser } from '~/fetches';
+
+import SignUpForm from './SignUpForm';
+import Layout from './LayoutCenterSmall';
 
 class SignUp extends Component {
   state = {
@@ -30,19 +32,13 @@ class SignUp extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col
-            md={6} lg={4}
-            offset={{ md: 3, lg: 4 }}>
-            <Segment>
-              <SignUpForm
-                onSubmit={this.handleSubmit}
-                {...this.state} />
-            </Segment>
-          </Col>
-        </Row>
-      </Container>
+      <Layout>
+        <Segment>
+          <SignUpForm
+            onSubmit={this.handleSubmit}
+            {...this.state} />
+        </Segment>
+      </Layout>
     );
   }
 }

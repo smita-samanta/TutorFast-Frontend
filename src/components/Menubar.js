@@ -57,8 +57,9 @@ const Menubar =
       {
         user.token
           ? <Menu.Item
-            name={`/user/${user.email}`}
             content={user.username}
+            name={'/user'}
+            active={path === '/user'}
             onClick={onProfile} />
           : null
       }
@@ -79,6 +80,6 @@ export default connect(
   dispatch => ({
     onItemClick: (_, { name }) => dispatch(push(name)),
     onSignOut: () => dispatch(signOut()),
-    onProfile: () => {},
+    onProfile: () => dispatch(push('/user')),
   }),
 )(Menubar);
