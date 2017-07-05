@@ -79,7 +79,10 @@ export default connect(
   ({ router, user }) => ({ path: router.location.pathname, user }),
   dispatch => ({
     onItemClick: (_, { name }) => dispatch(push(name)),
-    onSignOut: () => dispatch(signOut()),
+    onSignOut: () => {
+      dispatch(signOut());
+      dispatch(push('/'));
+    },
     onProfile: () => dispatch(push('/user')),
   }),
 )(Menubar);

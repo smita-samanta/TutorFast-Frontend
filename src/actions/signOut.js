@@ -1,4 +1,4 @@
-import { TYPE } from '~/reducers/setUser';
+import { SET_USER } from '~/reducers/user';
 
 export default () =>
-  ({ type: TYPE, user: {} });
+  ({ type: SET_USER, user: {} });

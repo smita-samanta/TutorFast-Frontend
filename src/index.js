@@ -4,11 +4,17 @@ import App from './containers/App';
 import { AppContainer } from 'react-hot-loader';
 import Context, { createContextConfig } from './containers/Context';
 
-const contextConfig = createContextConfig({
-  initialState: {
-    user: JSON.parse(localStorage.getItem('user')) || {},
-  },
-});
+let contextConfig;
+
+try {
+  contextConfig = createContextConfig({
+    initialState: {
+      user: JSON.parse(localStorage.getItem('user')) || {},
+    },
+  });
+} catch (err) {
+  contextConfig = createContextConfig();
+}
 
 const render = Component =>
   ReactDOM.render(
