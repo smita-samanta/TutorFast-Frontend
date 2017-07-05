@@ -23,8 +23,9 @@ class UserView extends Component {
       token: string,
     },
     onEdit: () => {},
+    onDelete: () => {},
     onCancel: () => {},
-    onSave: () => {}
+    onSave: () => {},
   }
 
   handleEdit = this.props.onEdit;
@@ -33,8 +34,6 @@ class UserView extends Component {
 
   handleSave = userUpdate => {
     this.setState({ loading: true });
-
-    console.log(userUpdate);
 
     this.props.onSave(userUpdate, this.props.user.token)
       .catch(err => this.setState({ errors: [err] }))

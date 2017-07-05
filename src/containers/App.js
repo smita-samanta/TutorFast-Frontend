@@ -7,6 +7,8 @@ import SignUp from '~/components/SignUp';
 import SignIn from '~/components/SignIn';
 import UserView from '~/components/UserView';
 
+import PrivateRoute from './PrivateRoute';
+
 
 export default () =>
   <div>
@@ -16,7 +18,7 @@ export default () =>
       <Route path='/hello' component={HelloWorld} />
       <Route path='/sign-up' component={SignUp} />
       <Route path='/sign-in' component={SignIn} />
-      <Route path='/user' component={UserView} />
+      <PrivateRoute path='/user' component={UserView} />
     </Switch>
   </div>
 ;
