@@ -24,7 +24,6 @@ class SignIn extends Component {
     this.setState({ loading: true });
 
     return createSession(user)
-      .then(pipe(() => this.setState({ loading: false, errors: [] })))
       .then(({ token }) => getOwnUser(token))
       .then(user => this.props.onSignIn(user))
       .catch(err => this.setState({ loading: false, errors: [err] }))

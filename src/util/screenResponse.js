@@ -1,10 +1,10 @@
-export default (res: {}): {} => {
+export default async (res: {}): {} => {
   if (res.status >= 200 && res.status < 300) return res;
 
   if (!res || !res.json)
     throw 'Invalid response object.';
 
-  const err = res.json().err;
+  const err = (await res.json()).err;
 
   if (err && typeof err === 'string')
     throw err;

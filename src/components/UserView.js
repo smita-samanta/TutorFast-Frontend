@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
 import { push } from 'react-router-redux';
-import { Segment, Button, Divider } from 'semantic-ui-react';
+import {
+  Segment,
+  Button,
+  Divider,
+} from 'semantic-ui-react';
 
 import Layout from './LayoutCenterSmall';
 import UserFields from './UserFields';
 import EditUserModal from './EditUserModal';
+import DeleteUserModal from './DeleteUserModal';
 
 import { updateUser as updateUserFetch } from '~/fetches';
 import { updateUser as updateUserAction } from '~/actions';
@@ -23,12 +28,14 @@ class UserView extends Component {
       token: string,
     },
     onEdit: () => {},
-    onDelete: () => {},
+    onDeleteModal: () => {},
     onCancel: () => {},
     onSave: () => {},
   }
 
   handleEdit = this.props.onEdit;
+
+  handleDeleteModal = this.props.onDeleteModal
 
   handleCancel = this.props.onCancel;
 
@@ -44,12 +51,18 @@ class UserView extends Component {
   render() {
     return (
       <Layout>
-        <Segment>
+        <Segment clearing>
           <UserFields user={this.props.user} />
 
           <Divider />
 
-          <Button fluid onClick={this.handleEdit}>Edit</Button>
+          <Button primary onClick={this.handleEdit}>Edit</Button>
+          <Button negative onClick={this.handleDeleteModal} floated='right'>Delete</Button>
+
+
+          <Route
+            path='/user/delete'
+            component={DeleteUserModal} />
 
           <Route
             path='/user/edit'
@@ -80,5 +93,6 @@ export default connect(
       updateUserFetch({ token, ...userUpdate })
         .then(({ user }) => dispatch(updateUserAction(user)))
         .then(() => dispatch(push('/user'))),
+    onDeleteModal: () => dispatch(push('/user/delete')),
   }),
 )(UserView);
