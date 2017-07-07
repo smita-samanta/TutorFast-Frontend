@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Message } from 'semantic-ui-react';
+import { Form, Message, Checkbox } from 'semantic-ui-react';
 import { validate } from 'email-validator';
 
 class SignUpForm extends Component {
@@ -28,6 +28,7 @@ class SignUpForm extends Component {
       pristine: true,
       value: '',
     },
+    isTutor: '',
     success: this.props.success,
     errors: [...this.props.errors],
   }
@@ -54,6 +55,11 @@ class SignUpForm extends Component {
   handleChange = (e, { name, value }) =>
     this.setState({ [name]: { value, pristine: false } })
 
+  handleCheckboxChange(e) {
+    console.log('Checkbox Changed');
+    this.setState({isTutor: !this.state.isTutor});
+  }
+
   handleSubmit = () => {
     const errors = Object.entries(this.computeFieldValidity())
       .filter(([_, validity]) => !validity)
@@ -66,17 +72,19 @@ class SignUpForm extends Component {
       username: { ...this.state.username, pristine: false },
       password: { ...this.state.password, pristine: false },
       email: { ...this.state.email, pristine: false },
+      isTutor: false,
     });
 
 
     // if there are errors dont submit
     if (errors.length) return;
 
-    const { username, password, email } = this.state;
+    const { username, password, email, isTutor } = this.state;
     this.props.onSubmit({
       username: username.value,
       password: password.value,
       email: email.value,
+      isTutor: isTutor,
     });
   }
 
@@ -132,6 +140,12 @@ class SignUpForm extends Component {
           type='password'
           error={fieldErrors.password}
           onChange={this.handleChange} />
+
+        <Checkbox
+          label='I am a Tutor!'
+          //onClick={this.handleCheckboxChange}
+          //value={this.state.isTutor}
+        />
 
         <Form.Button content='Sign Up!' />
 
