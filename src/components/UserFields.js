@@ -10,7 +10,7 @@ export default
     <Header as='h2' icon textAlign='center'>
       <Icon name='user' circular />
       <Header.Content>
-        Friends
+        Profile Details
       </Header.Content>
     </Header>
 
