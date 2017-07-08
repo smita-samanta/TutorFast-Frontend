@@ -23,7 +23,7 @@ class DeleteUserModal extends Component {
 
   handleDelete = () => {
     this.setState({ loading: true });
-    
+
     this.props
       .onDelete({
         password: this.state.password,
