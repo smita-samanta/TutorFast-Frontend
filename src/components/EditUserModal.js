@@ -4,6 +4,8 @@ import { validate as validateEmail } from 'email-validator';
 
 import { validateZipCode } from '~/util';
 
+import EditableList from './EditableList';
+
 
 class EditUserForm extends Component {
   static defaultProps = {
@@ -167,6 +169,8 @@ class EditUserForm extends Component {
               disabled={!this.state.isTutor}
               error={fieldErrors.zipCode}
               onChange={this.handleChange} />
+
+            <EditableList list={['sdlkf', 'sdfjsd', 'ksdf']} />
 
             <Message
               success
