@@ -12,16 +12,22 @@ class EditUserForm extends Component {
     success: '',
     loading: false,
     errors: [],
-    fieldErrors: {},
+    fieldErrors: {
+      email: false,
+      username: false,
+      password: false,
+      zipCode: false,
+      isTutor: false,
+    },
   }
 
   state = {
     email: '',
     username: '',
     password: '',
+    zipCode: '',
     isTutor: false,
     subjects: [],
-    zipCode: '',
     success: this.props.success,
     errors: [...this.props.errors],
   }
@@ -39,7 +45,7 @@ class EditUserForm extends Component {
       username: string,
       isTutor: boolean,
       subjects: Array<string>,
-      zipCode: number,
+      zipCode: ?number,
     },
     onSave: Function,
     onCancel: Function,
