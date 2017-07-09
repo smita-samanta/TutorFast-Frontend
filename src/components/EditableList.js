@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, List } from 'semantic-ui-react';
+import { Input, Button, Icon } from 'semantic-ui-react';
 
 class EditableList extends Component {
   defaultProps = {
@@ -17,20 +17,23 @@ class EditableList extends Component {
 
   render() {
     return (
-      <List size='huge' celled relaxed selection>
+      <div>
         {this.state.list.map((item, idx) =>
-          <List.Item key={idx}>
-            <List.Content floated='right'>
-              <Button icon='trash' />
-              <Button positive icon='edit' />
-            </List.Content>
-
-            <List.Content>
-              {item}
-            </List.Content>
-          </List.Item>
+          <Input
+            defaultValue={item}
+            action={<Button icon='trash' />}
+            fluid
+            key={idx} />
         )}
-      </List>
+        <Button positive animated='fade' fluid>
+          <Button.Content visible>
+            <Icon name='add' />
+          </Button.Content>
+          <Button.Content hidden>
+            Add Another Subject!
+          </Button.Content>
+        </Button>
+      </div>
     );
   }
 }
