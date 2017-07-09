@@ -89,7 +89,7 @@ class EditUserForm extends Component {
       'subjects',
     ].reduce(
       (u, field) =>
-        this.state[field]
+        this.state[field] !== undefined
           ? { ...u, [field]: this.state[field] }
           : u,
       {},

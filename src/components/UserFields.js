@@ -18,17 +18,41 @@ export default
       <List.Item>
         <List.Icon name='vcard' size='large' verticalAlign='middle' />
         <List.Content>
-          <List.Header as='a'>{user.username}</List.Header>
-          <List.Description as='a'>Your secret codename 😎.</List.Description>
+          <List.Header>{user.username}</List.Header>
+          <List.Description>Your secret codename 😎.</List.Description>
         </List.Content>
       </List.Item>
       <List.Item>
         <List.Icon name='mail' size='large' verticalAlign='middle' />
         <List.Content>
-          <List.Header as='a'>{user.email}</List.Header>
-          <List.Description as='a'>An email where you can be reached.</List.Description>
+          <List.Header>{user.email}</List.Header>
+          <List.Description>An email where you can be reached.</List.Description>
         </List.Content>
       </List.Item>
+      <List.Item>
+        <List.Icon name='book' size='large' verticalAlign='middle' />
+        <List.Content>
+          <List.Header>{user.isTutor ? 'Tutor' : 'Learner'}</List.Header>
+          <List.Description>Account type.</List.Description>
+        </List.Content>
+      </List.Item>
+
+      {user.isTutor ? <List.Item>
+        <List.Icon name='location arrow' size='large' verticalAlign='middle' />
+        <List.Content>
+          <List.Header>{user.zipCode}</List.Header>
+          <List.Description>The ZIP code you teach in.</List.Description>
+        </List.Content>
+      </List.Item> : null}
+      {user.isTutor ? <List.Item>
+        <List.Icon name='idea' size='large' verticalAlign='middle' />
+        <List.Content>
+          <List.Header>
+            <List items={user.subjects} />
+          </List.Header>
+          <List.Description>Your teachable subjects.</List.Description>
+        </List.Content>
+      </List.Item> : null}
     </List>
   </div>
 ;
