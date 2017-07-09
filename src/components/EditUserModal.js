@@ -17,7 +17,6 @@ class EditUserForm extends Component {
     fieldErrors: {
       email: false,
       username: false,
-      password: false,
       zipCode: false,
       isTutor: false,
     },
@@ -26,7 +25,6 @@ class EditUserForm extends Component {
   state = {
     email: this.props.user.email,
     username: this.props.user.username,
-    password: '',
     zipCode: this.props.user.zipCode,
     isTutor: this.props.user.isTutor,
     subjects: [...this.props.user.subjects],
@@ -57,7 +55,6 @@ class EditUserForm extends Component {
     fieldErrors: {
       email: boolean,
       username: boolean,
-      password: boolean,
       zipCode: boolean,
       isTutor: boolean,
     }
@@ -83,7 +80,6 @@ class EditUserForm extends Component {
     this.props.onSave([
       'username',
       'email',
-      'password',
       'isTutor',
       'zipCode',
       'subjects',
@@ -103,7 +99,6 @@ class EditUserForm extends Component {
   computeFieldValidity = () => ({
     username: true,
     email: !this.state.email || validateEmail(this.state.email),
-    password: true,
     isTutor: true,
     zipCode: !this.state.zipCode || validateZipCode(this.state.zipCode),
   })
@@ -115,11 +110,8 @@ class EditUserForm extends Component {
     email:
       !this.computeFieldValidity().email ||
       this.props.fieldErrors.email,
-    password:
-      !this.computeFieldValidity().password ||
-      this.props.fieldErrors.password,
     isTutor:
-      !this.computeFieldValidity().password ||
+      !this.computeFieldValidity().isTutor ||
       this.props.fieldErrors.isTutor,
     zipCode:
       !this.computeFieldValidity().zipCode ||
@@ -161,13 +153,6 @@ class EditUserForm extends Component {
                 defaultValue={this.props.user.username}
                 placeholder={this.props.user.username} />
             </Form.Field>
-
-            <Form.Input
-              name='password'
-              label='Password'
-              type='password'
-              error={fieldErrors.password}
-              onChange={this.handleChange} />
 
             <Form.Checkbox
               name='isTutor'
