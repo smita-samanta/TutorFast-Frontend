@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Message, Modal, Button } from 'semantic-ui-react';
+import { Form, Message, Modal, Button, Input } from 'semantic-ui-react';
 import { validate as validateEmail } from 'email-validator';
 
 import { validateZipCode } from '~/util';
@@ -24,12 +24,12 @@ class EditUserForm extends Component {
   }
 
   state = {
-    email: '',
-    username: '',
+    email: this.props.user.email,
+    username: this.props.user.username,
     password: '',
-    zipCode: '',
-    isTutor: false,
-    subjects: [],
+    zipCode: this.props.user.zipCode,
+    isTutor: this.props.user.isTutor,
+    subjects: [...this.props.user.subjects],
     success: this.props.success,
     errors: [...this.props.errors],
   }
@@ -96,6 +96,10 @@ class EditUserForm extends Component {
     ));
   }
 
+  handleSubjects = subjects => {
+    this.setState({ subjects });
+  }
+
   computeFieldValidity = () => ({
     username: true,
     email: !this.state.email || validateEmail(this.state.email),
@@ -136,19 +140,27 @@ class EditUserForm extends Component {
             error={Boolean(errors.length)}
             loading={this.props.loading} >
 
-            <Form.Input
-              name='email'
-              label='Email'
-              placeholder={this.props.user.email}
-              error={fieldErrors.email}
-              onChange={this.handleChange} />
+            <Form.Field>
+              <label>Email</label>
+              <Input
+                name='email'
+                autoComplete='off'
+                error={fieldErrors.email}
+                onChange={this.handleChange}
+                defaultValue={this.props.user.email}
+                placeholder={this.props.user.email} />
+            </Form.Field>
 
-            <Form.Input
-              name='username'
-              label='Username'
-              placeholder={this.props.user.username}
-              error={fieldErrors.username}
-              onChange={this.handleChange} />
+            <Form.Field>
+              <label>Username</label>
+              <Input
+                name='username'
+                autoComplete='off'
+                error={fieldErrors.username}
+                onChange={this.handleChange}
+                defaultValue={this.props.user.username}
+                placeholder={this.props.user.username} />
+            </Form.Field>
 
             <Form.Input
               name='password'
@@ -160,18 +172,27 @@ class EditUserForm extends Component {
             <Form.Checkbox
               name='isTutor'
               label='Tutor'
+              defaultChecked={this.props.user.isTutor}
               error={fieldErrors.isTutor}
               onChange={this.handleChange} />
 
-            <Form.Input
-              name='zipCode'
-              label='ZIP Code'
-              disabled={!this.state.isTutor}
-              error={fieldErrors.zipCode}
-              onChange={this.handleChange} />
+            <Form.Field>
+              <label>ZIP Code</label>
+              <Input
+                name='zipCode'
+                autoComplete='off'
+                error={fieldErrors.zipCode}
+                onChange={this.handleChange}
+                defaultValue={this.props.user.zipCode}
+                placeholder={this.props.user.zipCode} />
+            </Form.Field>
 
-            <EditableList list={['sdlkf', 'sdfjsd', 'ksdf']} />
-
+            <Form.Field>
+              <label>Teachable Subjects</label>
+              <EditableList
+                list={this.state.subjects}
+                onChange={this.handleSubjects} />
+            </Form.Field>
             <Message
               success
               content={success} />
