@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Message, Modal, Button, Input } from 'semantic-ui-react';
+import { Form, Message, Modal, Button, Input, Label } from 'semantic-ui-react';
 import { validate as validateEmail } from 'email-validator';
 
-import { validateZipCode } from '~/util';
+import { validateZipCode, validateRate } from '~/util';
 
 import EditableList from './EditableList';
 
@@ -19,6 +19,7 @@ class EditUserForm extends Component {
       username: false,
       zipCode: false,
       isTutor: false,
+      rate: false,
     },
   }
 
@@ -27,6 +28,7 @@ class EditUserForm extends Component {
     username: this.props.user.username,
     zipCode: this.props.user.zipCode,
     isTutor: this.props.user.isTutor,
+    rate: this.props.user.rate,
     subjects: [...this.props.user.subjects],
     success: this.props.success,
     errors: [...this.props.errors],
@@ -46,6 +48,7 @@ class EditUserForm extends Component {
       isTutor: boolean,
       subjects: Array<string>,
       zipCode: ?number,
+      rate: number,
     },
     onSave: Function,
     onCancel: Function,
@@ -57,6 +60,7 @@ class EditUserForm extends Component {
       username: boolean,
       zipCode: boolean,
       isTutor: boolean,
+      rate: boolean,
     }
   }
 
@@ -83,6 +87,7 @@ class EditUserForm extends Component {
       'isTutor',
       'zipCode',
       'subjects',
+      'rate',
     ].reduce(
       (u, field) =>
         this.state[field] !== undefined
@@ -101,6 +106,7 @@ class EditUserForm extends Component {
     email: !this.state.email || validateEmail(this.state.email),
     isTutor: true,
     zipCode: !this.state.zipCode || validateZipCode(this.state.zipCode),
+    rate: !this.state.rate || validateRate(this.state.rate),
   })
 
   computeFieldErrors = () => ({
@@ -116,6 +122,9 @@ class EditUserForm extends Component {
     zipCode:
       !this.computeFieldValidity().zipCode ||
       this.props.fieldErrors.zipCode,
+    rate:
+      !this.computeFieldValidity().rate ||
+      this.props.fieldErrors.rate,
   })
 
   render() {
@@ -160,6 +169,23 @@ class EditUserForm extends Component {
               defaultChecked={this.props.user.isTutor}
               error={fieldErrors.isTutor}
               onChange={this.handleChange} />
+
+            {this.state.isTutor ? <Form.Field>
+              <label>Hourly Rate</label>
+              <Input
+                name='rate'
+                autoComplete='off'
+                labelPosition='right'
+                error={fieldErrors.rate}
+                onChange={this.handleChange}
+                defaultValue={this.props.user.rate}
+                placeholder={this.props.user.rate}>
+
+                <Label>$</Label>
+                <input />
+                <Label>per hour</Label>
+              </Input>
+            </Form.Field> : null}
 
             {this.state.isTutor ? <Form.Field>
               <label>ZIP Code</label>
