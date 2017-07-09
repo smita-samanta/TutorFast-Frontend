@@ -176,7 +176,7 @@ class EditUserForm extends Component {
               error={fieldErrors.isTutor}
               onChange={this.handleChange} />
 
-            <Form.Field>
+            {this.state.isTutor ? <Form.Field>
               <label>ZIP Code</label>
               <Input
                 name='zipCode'
@@ -185,14 +185,15 @@ class EditUserForm extends Component {
                 onChange={this.handleChange}
                 defaultValue={this.props.user.zipCode}
                 placeholder={this.props.user.zipCode} />
-            </Form.Field>
+            </Form.Field> : null}
 
-            <Form.Field>
+            {this.state.isTutor ? <Form.Field>
               <label>Teachable Subjects</label>
               <EditableList
                 list={this.state.subjects}
                 onChange={this.handleSubjects} />
-            </Form.Field>
+            </Form.Field> : null}
+
             <Message
               success
               content={success} />
