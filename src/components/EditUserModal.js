@@ -90,7 +90,7 @@ class EditUserForm extends Component {
       'rate',
     ].reduce(
       (u, field) =>
-        this.state[field] !== undefined
+        field in this.state
           ? { ...u, [field]: this.state[field] }
           : u,
       {},
